@@ -1,0 +1,40 @@
+{
+    "autoload": {
+        "classmap": [
+            "public_html/rock_backend/modules",
+            "public_html/rock_backend/backend_controls/templates",
+            "public_html/rock_backend/admin",
+            "public_html/rock_backend/includes",
+            "public_html/rock_backend/page_types",
+            "public_html",
+            "public_html/ShoppingCart",
+            "public_html/ShoppingCart/constants",
+            "public_html/rock_frontend/pagetypes",
+            "public_html/rock_frontend/custom/forms",
+            "public_html/rock_frontend/sitemap"
+
+        ]
+
+
+    },
+    "require":
+            {
+                "php": ">=5.2.0",
+                "ext-curl": "*",
+                "authorizenet/authorizenet": "1.8.8",
+                "jms/serializer": "xsd2php-dev as 0.18.0"
+            },
+    "require-dev":
+            {
+                "goetas/xsd2php": "2.0.x-dev#fdc2ab0bb3f2b3ab796ca567cf8c0f3446a7ea3a",
+                "goetas/xsd-reader": "2.*@dev"
+            },
+    "repositories":
+            [{
+                    "type": "vcs",
+                    "url": "https://github.com/goetas/serializer.git"
+                }]
+
+}
+
+

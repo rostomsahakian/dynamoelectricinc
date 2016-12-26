@@ -1,0 +1,45 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 4, 2016, 12:35:55 PM
+    Author     : rostom
+*/
+
+.rock-nav-overwrite  .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover{
+    color: #000;
+    background-color: transparent;
+}
+.rock-nav-overwrite > li > a {
+    color: #fff !important;
+    font-size: 13px !important;
+    font-weight: bold !important;
+}
+.rock-nav-default{
+    background-color: #282828 !important;
+    border-color: #000 !important;
+}
+.rock-in-between-navs{
+    min-height: 69px !important;
+}
+.rock-in-between-navs .rock-header-logo {
+    margin-top:-20px;
+    margin-left:0px;
+}
+.breadcrumb a {
+    color:#d92736 !important;
+}
+.breadcrumb{
+    background-color:  #000 !important; 
+}
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover{
+    background-color: #D92736 !important;
+    border-color: #D92736 !important;
+
+}
+/*.tooltip-inner {
+    background-color: #fff !important;
+    color: #000 !important;
+}*/

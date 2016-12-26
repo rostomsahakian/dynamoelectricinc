@@ -1,0 +1,25 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 13, 2016, 6:57:08 PM
+    Author     : rostom
+*/
+body{
+    background-color: #F5F5F5;
+}
+.prock-container-admin{
+
+    margin-top: 145px;
+
+}
+.prock-panel-heading{
+    background-color: #454343 !important;
+    color: #EC7063 !important;
+
+}
+.prock-ul{
+    list-style: none;
+}

@@ -1,0 +1,16 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 5, 2016, 11:03:47 AM
+    Author     : rostom
+*/
+
+.rock-static-page-header{
+    text-align: center !important;
+}
+.rock-static-page-header h2{
+    text-transform: uppercase;
+}

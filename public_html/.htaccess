@@ -1,0 +1,15 @@
+Options -Indexes +FollowSymLinks
+RewriteEngine On
+    RewriteBase /
+    RewriteCond %{HTTP_HOST} ^(www.)?dev.dynamoelectricinc.com$
+#    # Change 'subdirectory' to be the directory you will use for your main domain.
+    #RewriteCond %{REQUEST_URI} !^/public_html/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)$ /public_html/$1
+#RewriteRule ^admin /rock_backend/admin [L]
+RewriteRule ^(.*)$ index.php?page=$1 [QSA,L]
+#RewriteRule ([a-z]+)/([0-9]+)$ index.php?page=$1 
+
+
+

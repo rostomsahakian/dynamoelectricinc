@@ -1,0 +1,43 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 5, 2016, 11:02:30 AM
+    Author     : rostom
+*/
+
+
+.panel-default > .panel-heading {
+    color: #fff;
+    background-color: #d92736 !important;
+    border-color: #d92736 !important;
+}
+.panel-default > .panel-heading a {
+    color:#fff !important;
+}
+.panel-default {
+    border-color: #d92736 !important;
+
+}
+.panel-default h3,label{
+    color: #000 !important;
+}
+.panel-default > .panel-body ul li {
+    color:#000 !important;
+}
+.rock-item-desc {
+    color:#000;
+}
+.wish-list{
+    color:#000 !important;
+    background-color: #fff !important;
+    border: none !important;
+}
+.rock-success-message{
+    background-color: #449D44 !important;
+    border-color: #449D44 !important;
+    color: #fff !important;
+    
+}

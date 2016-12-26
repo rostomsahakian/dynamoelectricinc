@@ -1,0 +1,28 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 8, 2016, 5:18:41 PM
+    Author     : rostom
+*/
+
+.rock-warning-message .alert-warning {
+
+    background-color: #DA2430 !important;
+    color: #fff !important;
+    font-size: 14px !important;
+    border-color: #DA2430 !important;
+}
+.rock-warning-message .close{
+    opacity: 1 !important;
+    color: #fff !important;
+}
+.rock-success-message .alert-warning{
+    background-color: #1D9D74 !important;
+    color: #fff !important;
+    font-weight: bold;
+    font-size: 14px !important;
+    border-color: #1D9D74 !important;
+}
