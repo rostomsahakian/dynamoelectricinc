@@ -193,7 +193,37 @@ fclose($myfile);
 
             $xml_test->GetSubs();
             $xml_test->CreateXMLSiteMap();
+            $x = $xml_test->GetALLPagesLinks();
+            $xml_test->MakeTheTree('0');
             ?>
+            <ul>
+                <?php
+                foreach ($x as $z) {
+                    echo "<br/>";
+                    if (array_key_exists("sub_categories", $z)) {
+                        ?>
+                        <li><?= $z['name'] ?>
+                            <?php
+                                    //var_dump($z);
+                            foreach ($z['sub_categories'] as $f) {
+                                //var_dump($f)
+                                ?>
+                                <li><?php ///var_dump($f['name']) ?></li>
+                                <?php
+                            }
+                            ?>
+
+
+                        </li>
+                        <?php
+                    } else {
+                        ?>
+                        <li><?= $z['name'] ?></li>
+                        <?php
+                    }
+                }
+                ?>
+            </ul>
             <a href="/data.xml" target="_BLANK">Sitemap</a>
         </center>
     </div>

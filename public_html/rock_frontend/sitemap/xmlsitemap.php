@@ -18,10 +18,12 @@ class xmlsitemap {
     private $_db;
     public $children;
     public $allPages = array();
+    public $queries;
 
     public function __construct() {
         $this->_db = DB_Connect::getInstance();
         $this->_mysqli = $this->_db->getConnection();
+        $this->queries = new Queries();
     }
 
     /*
@@ -68,7 +70,7 @@ class xmlsitemap {
             $no_special_chars = preg_replace('/[^a-zA-Z0-9,-]/', "-", $no_ands);
 
             $build_array = array(
-                array('permalink' => WEBSITE_URL . $no_special_chars . "/" . $r['id'], 'updated' => $r['date_created'],'changefreq'=>$r['changefreq'], 'priority'=>$r['priority']),
+                array('permalink' => WEBSITE_URL . $no_special_chars . "/" . $r['id'], 'updated' => $r['date_created'], 'changefreq' => $r['changefreq'], 'priority' => $r['priority']),
             );
             array_push($this->allPages, $build_array);
         }
@@ -106,6 +108,113 @@ class xmlsitemap {
             }
             return $this->children;
             // 
+        }
+    }
+
+    public function GetALLPagesLinks() {
+
+
+        $categories = array();
+
+        $get_parents = "SELECT * FROM `pages` WHERE `page_parent` = '0' ORDER BY `page_order` ASC";
+        $get_parents_res = $this->_mysqli->query($get_parents);
+        $num_rows = $get_parents_res->num_rows;
+        if ($num_rows > 0) {
+            while ($get_parents_rows = $get_parents_res->fetch_array(MYSQLI_ASSOC)) {
+                $this->parents[] = $get_parents_rows;
+                foreach ($this->parents as $parent) {
+
+
+                    $category = array();
+
+                    $category['id'] = $parent['id'];
+                    $category['name'] = $parent['page_name'];
+                    $category['parent'] = $parent['page_parent'];
+                    $category['type'] = $parent['page_type'];
+                    $category['page_id'] = $parent['page_id'];
+                    if ($this->HasChild($parent['id'])) {
+                        $category['sub_categories'] = array();
+                    }
+
+                    $get_children = "SELECT * FROM `pages` WHERE `page_parent` ='" . $parent['id'] . "' ORDER BY `page_order` ASC";
+                    $get_children_res = $this->_mysqli->query($get_children);
+                    $get_child_num_rows = $get_children_res->num_rows;
+                    if ($get_child_num_rows > 0) {
+                        while ($get_children_rows = $get_children_res->fetch_array(MYSQLI_ASSOC)) {
+                            $this->children[] = $get_children_rows;
+                            // if ($parent['id'] != "5") {
+                            foreach ($this->children as $child) {
+                                if ($parent['id'] == $child['page_parent']) {
+
+                                    $subcat = array();
+                                    $subcat['id'] = $child['id'];
+                                    $subcat['name'] = $child['page_name'];
+                                    $subcat['parent'] = $child['page_parent'];
+                                    $subcat['page_id'] = $child['page_id'];
+                                }
+                            }
+                            array_push($category['sub_categories'], $subcat);
+                        }
+                    }
+                }
+                array_push($categories, $category);
+            }
+
+            return $categories;
+        }
+    }
+
+    public function MakeTheTree($data) {
+        /*
+         * Get all top level pages
+         */
+        $sql = "SELECT * FROM `pages` WHERE `page_parent` = '" . $data . "' ORDER BY 'page_parent' ASC";
+        $result = $this->_mysqli->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+                if ($this->CheckIfHasChild($row['id'])) {
+                    $this->MakeTheTree($row['id']);
+                    var_dump($row['page_name']);
+                }
+            }
+        }
+    }
+
+    public function CheckIfHasChild($data) {
+        $sql = "SELECT * FROM `pages` WHERE `page_parent` ='" . $data . "' AND `page_parent` !='0'";
+        //var_dump($sql);
+        $result = $this->_mysqli->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+                $this->CheckIfHasChild($row['id']);
+            }
+            return true;
+        } else {
+            return FALSE;
+        }
+    }
+
+    /*
+     * Checks to see if the given value has any children retuns true or false
+     */
+
+    public function HasChild($parent_id) {
+
+        $data_to_ftech = array(
+            "table" => "pages",
+            "field" => "page_parent",
+            "value" => $parent_id
+        );
+
+
+        $this->queries->_res = NULL;
+        $get_children = $this->queries->findChildren($data_to_ftech, $option = 2);
+        $get_children = $this->queries->DoReturn();
+        $this->_children[] = $get_children;
+        if (count($get_children) > 0) {
+            return true;
+        } else {
+            return false;
         }
     }
 

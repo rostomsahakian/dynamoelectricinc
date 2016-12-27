@@ -78,8 +78,8 @@ class AddNewPage {
                 <div class="form-group">
                     <label>Page Parent</label>
                     <select name="page_parent[]" multiple="multiple" class="form-control" id="page-parent">
-                        <option value="00">--Select Page Parent--</option>
-                        <option value="none">None</option>
+                        <option value="11">--Select Page Parent--</option>
+                        <option value="0">None</option>
 
                         <?php
                         foreach ($this->GetAllPages() as $parents) {
@@ -116,12 +116,12 @@ class AddNewPage {
             /*
              * Check if all the required fields have been entered
              */
-            if ($this->_page_name == "" && $this->_page_type == "00" && $this->_page_parent == "00") {
+            if ($this->_page_name == "" && $this->_page_type == "00" && $this->_page_parent == "11") {
                 $messages = array(
                     "All feilds are required. Error #0001"
                 );
                 $this->Messages($messages, "danger");
-            } else if ($this->_page_name == "" || $this->_page_type == "00" || $this->_page_parent == "00") {
+            } else if ($this->_page_name == "" || $this->_page_type == "00" || $this->_page_parent == "11") {
                 $messages = array(
                     "All feilds are required. Error #0002."
                 );

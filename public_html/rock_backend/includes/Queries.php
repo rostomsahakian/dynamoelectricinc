@@ -99,7 +99,7 @@ class Queries {
                             . "`" . $data['fields']['field3'] . "` = '" . $data['values']['value1'] . "' AND "
                             . "`" . $data['fields']['field1'] . "` != '" . $data['values']['value2'] . "'"
                             . " ORDER by `" . $data['fields']['field4'] . "` , `" . $data['fields']['field2'] . "` ";
-
+                    var_dump($sql);
                     $result = $this->_mysqli->query($sql);
                     while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
                         if (count($row) < 1) {

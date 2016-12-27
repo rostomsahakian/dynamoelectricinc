@@ -240,14 +240,18 @@ if ($_SERVER['SERVER_PORT'] == "443") {
                     </center>
 
                 </div>
-                <div class="col-md-12">
-                    <div class="col-md-4 rock-shopping-cart">
-                        <?php
-                        ?>
-                        <a href="#" class="btn btn-success btn-xs rock-cart-top-btn" id="cart_logo"></a>
-                    </div>
-                </div>
+                <?php
+                if (SHOW_CART != 0 || SHOW_CART != "0") {
+                    ?>
+                    <div class="col-md-12">
+                        <div class="col-md-4 rock-shopping-cart">
 
+                            <a href="#" class="btn btn-success btn-xs rock-cart-top-btn" id="cart_logo"></a>
+                        </div>
+                    </div>
+                    <?php
+                }
+                ?>
 
             </div>
         </div>

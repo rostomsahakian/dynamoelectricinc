@@ -27,12 +27,15 @@ $page_array = explode("/", $page);
 /*
  * If the page array is empty that means the url should be pointing to home page
  */
+for ($c = 0; $c < count($page_array) - 1; $c++) {
+    
+}
 if ($page_array[0] == "") {
     /*
      * Get the home page ID
      */
     $page_id = $front_end_logic->GetHomePageID();
-} else if ($page_array[0] != "" && count($page_array) > 1) {
+} else if ($page_array[0] != "" && count($page_array) > 1 && is_numeric($page_array[$c])) {
     $link_count = count($page_array) - 1;
     /*
      * If array contains more that one element
@@ -42,10 +45,11 @@ if ($page_array[0] == "") {
     }
 //The last element will always be the page ID
     $page_id = $page_array[$i];
-} else if ($page_array[0] != "" && count($page_array) == 1) {
+} else if ($page_array[0] != "" && count($page_array) >= 1 && !is_numeric($page_array[$c])) {
+
 //This means that the page has alias
     $page_id = "";
-    $page_alias = $page_array[0];
+    $page_alias = $page_array[$c];
 } else {
     $page_alias = "";
 }
@@ -318,7 +322,7 @@ switch ($page_data['page_type']) {
         break;
     case "1010":
         include 'templates/header.php';
-        include ABSOLUTH_ROOT . 'public_html/rock_frontend/custom/forms/'.$_REQUEST['form-name'].'.php';
+        include ABSOLUTH_ROOT . 'public_html/rock_frontend/custom/forms/' . $_REQUEST['form-name'] . '.php';
         include 'templates/footer.php';
         break;
 }
